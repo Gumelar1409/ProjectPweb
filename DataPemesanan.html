@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pemesanan Konsumen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('./pantai.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            height: 100vh;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #e6f3ff;
+            color: #333;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Data Pemesanan Konsumen</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Pemesanan</th>
+                    <th>Nama Pemesan</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Nomor Identitas</th>
+                    <th>Tanggal Pesan</th>
+                    <th>Tipe Kamar</th>
+                    <th>Durasi Menginap</th>
+                    <th>Termasuk Breakfast</th>
+                    <th>Total Bayar</th>
+                </tr>
+            </thead>
+            <tbody id="dataContainer">
+                <tr>
+                    <td colspan="9">Belum ada data pemesanan.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        const dataPemesanan = JSON.parse(localStorage.getItem("dataPemesanan"));
+        if (dataPemesanan) {
+            const container = document.getElementById("dataContainer");
+            container.innerHTML = `
+                <tr>
+                    <td>${dataPemesanan.idPemesanan}</td>
+                    <td>${dataPemesanan.namaPemesan}</td>
+                    <td>${dataPemesanan.jenisKelamin}</td>
+                    <td>${dataPemesanan.nomorIdentitas}</td>
+                    <td>${dataPemesanan.tanggalPesan}</td>
+                    <td>${dataPemesanan.tipeKamar}</td>
+                    <td>${dataPemesanan.durasiMenginap} hari</td>
+                    <td>${dataPemesanan.breakfast}</td>
+                    <td>${dataPemesanan.totalBayar}</td>
+                </tr>
+            `;
+        }
+    </script>
+</body>
+</html>

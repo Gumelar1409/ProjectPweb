@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lihat Fasilitas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('pantai.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        header {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+        ul {
+            margin: 20px 0;
+            padding: 0;
+            list-style-type: none;
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+            overflow: hidden;
+        }
+        ul li {
+            margin: 0;
+            padding: 15px;
+            font-size: 18px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+        }
+        ul li:last-child {
+            border-bottom: none;
+        }
+        ul li::before {
+            content: '\2713';
+            color: #6a11cb;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 22px;
+        }
+        @media (max-width: 600px) {
+            header, ul {
+                width: 90%;
+            }
+            header h1 {
+                font-size: 22px;
+            }
+        }
+        .button-container {
+            margin: 20px 0;
+            width: 90%;
+            max-width: 800px;
+            display: flex;
+            justify-content: center;
+        }
+        .button-container button {
+            background: linear-gradient(135deg, #86e4f1, #30a9cb);
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .button-container button:hover {
+            background: linear-gradient(135deg, #30a9cb, #1d6c91);
+            transform: translateY(-3px);
+        }
+        .button-container button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fasilitas Hotel Kami</h1>
+    </header>
+    <ul>
+        <li>Wi-Fi</li>
+        <li>Kolam Renang</li>
+        <li>Gym</li>
+        <li>Restoran</li>
+        <li>Ruang Pertemuan</li>
+    </ul>
+    <div class="button-container">
+        <button onclick="window.location.href='DashbordKonsumen.html'">Kembali</button>
+    </div>
+</body>
+</html>

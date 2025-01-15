@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Fasilitas</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('./pantai.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+        header {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .button-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 20px 0;
+            width: 90%;
+            max-width: 500px;
+        }
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+            width: 90%;
+            max-width: 500px;
+        }
+        .form-container input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .form-container button {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .form-container button:hover {
+            background: linear-gradient(135deg, #0056b3, #003d80);
+            transform: scale(1.05);
+        }
+        table {
+            width: 90%;
+            max-width: 800px;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+        }
+        table th {
+            background: linear-gradient(135deg, #007BFF, #0056b3);
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        table tr:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        table td button {
+            background: linear-gradient(135deg, #ff4b5c, #d70022);
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        table td button:hover {
+            background: linear-gradient(135deg, #d70022, #a50017);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Kelola Fasilitas</h1>
+    </header>
+    
+    <!-- Tombol Kembali dan Tambah Fasilitas -->
+
+    <div class="form-container">
+        <form id="fasilitasForm">
+            <input type="text" id="fasilitasName" placeholder="Nama Fasilitas" required>
+        </form>
+        <div >
+            <button onclick="window.location.href='DasboardAdmin.html'">Kembali</button>
+            <button onclick="tambahFasilitas()">Tambah Fasilitas</button>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Fasilitas</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody id="fasilitasTableBody">
+            <!-- Data fasilitas akan ditampilkan di sini -->
+        </tbody>
+    </table>
+    <script>
+        let fasilitasList = [];
+        function tambahFasilitas() {
+            const fasilitasName = document.getElementById("fasilitasName").value.trim();
+            if (fasilitasName === "") {
+                alert("Nama fasilitas tidak boleh kosong!");
+                return;
+            }
+
+            fasilitasList.push(fasilitasName);
+            document.getElementById("fasilitasName").value = ""; // Kosongkan input
+            renderFasilitas();
+        }
+        function hapusFasilitas(index) {
+            if (confirm("Apakah Anda yakin ingin menghapus fasilitas ini?")) {
+                fasilitasList.splice(index, 1);
+                renderFasilitas();
+            }
+        }
+        function renderFasilitas() {
+            const tableBody = document.getElementById("fasilitasTableBody");
+            tableBody.innerHTML = "";
+            fasilitasList.forEach((fasilitas, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${fasilitas}</td>
+                    <td>
+                        <button onclick="hapusFasilitas(${index})">Hapus</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+    </script>
+</body>
+</html>
